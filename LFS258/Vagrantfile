@@ -1,0 +1,24 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'ubuntu/xenial64'
+  config.vm.provision 'docker'
+  config.vm.provision 'shell', path: 'bootstrap.sh'
+
+  config.vm.provider 'virtualbox' do |vb|
+    vb.memory = '2048'
+  end
+
+  config.vm.define 'k8s-master' do |master|
+    master.vm.network 'private_network', ip: '192.168.1.10'
+    master.vm.hostname = 'k8s-master'
+  end
+
+  (1..2).each do |n|
+    config.vm.define "k8s-worker#{n}" do |worker|
+      worker.vm.network 'private_network', ip: "192.168.1.1#{n}"
+      worker.vm.hostname = "k8s-worker#{n}"
+    end
+  end
+end
