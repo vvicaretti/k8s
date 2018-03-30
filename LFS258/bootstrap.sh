@@ -18,10 +18,6 @@ apt-get install -y \
   kubectl \
   sysdig
 
-# download flannel
-wget -q -O kube-flannel.yml \
-  https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-
 # enable auto-completion
 echo "source <(kubectl completion bash)" >> ~/.bashrc
 
