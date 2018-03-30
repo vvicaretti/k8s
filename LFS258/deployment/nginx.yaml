@@ -29,6 +29,9 @@ spec:
       - image: nginx
         imagePullPolicy: Always
         name: nginx
+        ports:
+          - containerPort: 80
+            protocol: TCP
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
