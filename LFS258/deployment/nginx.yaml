@@ -37,22 +37,3 @@ spec:
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
-status:
-  availableReplicas: 1
-  conditions:
-  - lastTransitionTime: 2018-03-30T13:24:11Z
-    lastUpdateTime: 2018-03-30T13:24:11Z
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  - lastTransitionTime: 2018-03-30T13:24:11Z
-    lastUpdateTime: 2018-03-30T13:24:32Z
-    message: ReplicaSet "nginx-65899c769f" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  observedGeneration: 1
-  readyReplicas: 1
-  replicas: 1
-  updatedReplicas: 1
