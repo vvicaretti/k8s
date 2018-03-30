@@ -1,14 +1,15 @@
 # upgrade
 export DEBIAN_FRONTEND=noninteractive
 
-# setup additional repository
+# setup additional repositories:
+## sysdig
 curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | apt-key add -
 curl -s -o /etc/apt/sources.list.d/draios.list https://s3.amazonaws.com/download.draios.com/stable/deb/draios.list
+## kubernetes
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >/etc/apt/sources.list.d/kubernetes.list
 
 apt-get update && apt-get upgrade -y
-# install requirements
 apt-get install -y \
   apt-transport-https \
   htop \
@@ -16,7 +17,8 @@ apt-get install -y \
   kubelet \
   kubeadm \
   kubectl \
-  sysdig
+  sysdig \
+  jq
 
 # enable auto-completion
 echo "source <(kubectl completion bash)" >> ~/.bashrc
