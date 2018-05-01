@@ -14,8 +14,8 @@ apt-get install -y \
   apt-transport-https \
   htop \
   linux-headers-"$(uname -r)" \
-  kubelet \
-  kubeadm \
+  kubelet=1.9.1-00 \
+  kubeadm=1.9.1-00 \
   kubectl \
   sysdig \
   jq
