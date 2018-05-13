@@ -9,6 +9,13 @@ curl -s -o /etc/apt/sources.list.d/draios.list https://s3.amazonaws.com/download
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >/etc/apt/sources.list.d/kubernetes.list
 
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
 apt-get update && apt-get upgrade -y
 apt-get install -y \
   apt-transport-https \
@@ -18,7 +25,11 @@ apt-get install -y \
   kubeadm \
   kubectl \
   sysdig \
-  jq
+  ca-certificates \
+  curl \
+  software-properties-common \
+  jq \
+  docker-ce=17.03.2~ce-0~ubuntu-xenial
 
 # enable auto-completion
 {

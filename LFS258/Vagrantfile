@@ -3,7 +3,6 @@
 
 Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu/xenial64'
-  config.vm.provision 'docker'
   config.vm.provision 'shell', path: 'bootstrap.sh'
   config.vm.box_check_update = false
 
@@ -18,7 +17,7 @@ Vagrant.configure('2') do |config|
     master.vm.hostname = 'k8s-master'
   end
 
-  (1..3).each do |n|
+  (1..2).each do |n|
     config.vm.define "k8s-worker#{n}" do |worker|
       worker.vm.network 'private_network', ip: "192.168.1.1#{n}"
       worker.vm.hostname = "k8s-worker#{n}"
