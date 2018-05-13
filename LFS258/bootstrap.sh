@@ -21,7 +21,12 @@ apt-get install -y \
   jq
 
 # enable auto-completion
-echo "source <(kubectl completion bash)" >> ~/.bashrc
+{
+    echo "source <(kubectl completion bash)"
+    echo 'alias kget="kubectl get replicaset,pod,deployment,daemonset -o wide --show-labels"'
+    echo 'alias k="kubectl"'
+
+} >> ~/.bashrc
 
 # stern
 wget -q -O /usr/bin/stern \
