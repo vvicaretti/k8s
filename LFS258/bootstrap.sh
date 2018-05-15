@@ -1,5 +1,6 @@
-# upgrade
 export DEBIAN_FRONTEND=noninteractive
+
+cfssl_version="R1.2"
 
 # setup additional repositories:
 ## sysdig
@@ -30,6 +31,15 @@ apt-get install -y \
   software-properties-common \
   jq \
   docker-ce=17.03.2~ce-0~ubuntu-xenial
+
+curl -sSL \
+  -O "https://pkg.cfssl.org/${cfssl_version}/cfssl_linux-amd64" \
+  -O "https://pkg.cfssl.org/${cfssl_version}/cfssljson_linux-amd64"
+
+chmod +x cfssl_linux-amd64 cfssljson_linux-amd64
+
+mv -v cfssl_linux-amd64 /usr/local/bin/cfssl
+mv -v cfssljson_linux-amd64 /usr/local/bin/cfssljson
 
 # enable auto-completion
 {
