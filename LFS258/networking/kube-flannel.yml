@@ -124,7 +124,6 @@ spec:
         args:
         - --ip-masq
         - --kube-subnet-mgr
-        - --iface=enp0s8
         resources:
           requests:
             cpu: "100m"
