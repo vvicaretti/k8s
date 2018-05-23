@@ -1,4 +1,5 @@
-### read encrypted notes:
+### Use local kubectl:
 ```
-$ cat LFS258_lab.md | pandoc | lynx --stdin
+$ vagrant ssh k8s-master -- "sudo cat /etc/kubernetes/admin.conf" > admin.conf
+$ kubectl --kubeconfig ./admin.conf get nodes
 ```
