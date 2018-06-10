@@ -1,2 +1,3 @@
 *.log
 admin.conf
+provision/join.sh

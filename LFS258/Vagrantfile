@@ -1,9 +1,13 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+WORKERS = 2
+BASE_NETWORK = '192.168.1.1'
+POD_NETWORK = '10.244.0.0/16'
+
 Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu/xenial64'
-  config.vm.provision 'shell', path: 'bootstrap.sh'
+  config.vm.provision 'shell', path: 'provision/bootstrap.sh'
   config.vm.box_check_update = false
 
   config.vm.provider 'virtualbox' do |vb|
@@ -12,15 +16,17 @@ Vagrant.configure('2') do |config|
   end
 
   config.vm.define 'k8s-master' do |master|
-    master.vm.network 'private_network', ip: '192.168.1.10'
+    master.vm.network 'private_network', ip: "#{BASE_NETWORK}0"
     master.vm.network 'forwarded_port', guest: 8001, host: 8001
     master.vm.hostname = 'k8s-master'
+    master.vm.provision 'shell', path: "provision/master.sh", args: "#{POD_NETWORK} #{BASE_NETWORK}0"
   end
 
-  (1..2).each do |n|
+  (1..WORKERS).each do |n|
     config.vm.define "k8s-worker#{n}" do |worker|
-      worker.vm.network 'private_network', ip: "192.168.1.1#{n}"
+      worker.vm.network 'private_network', ip: "#{BASE_NETWORK}#{n}"
       worker.vm.hostname = "k8s-worker#{n}"
+      worker.vm.provision 'shell', path: "provision/worker.sh", args: "#{BASE_NETWORK}#{n}"
     end
   end
 end
