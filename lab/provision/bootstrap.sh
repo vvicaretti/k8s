@@ -30,7 +30,13 @@ apt-get install -y \
   curl \
   software-properties-common \
   jq \
+  nfs-kernel-server \
   docker-ce=17.03.2~ce-0~ubuntu-xenial
+
+# setup nfs
+mkdir -p /opt/data && chmod 1777 /opt/data/ && echo software > /opt/data/hello.txt
+echo "/opt/data/ *(rw,sync,no_root_squash,subtree_check)" >> /etc/exports
+exportfs -ra
 
 curl -sSL \
   -O "https://pkg.cfssl.org/${cfssl_version}/cfssl_linux-amd64" \

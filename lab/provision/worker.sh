@@ -6,6 +6,8 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
+apt-get update && apt-get install nfs-common
+
 
 chmod +x /vagrant/provision/join.sh
 bash /vagrant/provision/join.sh
