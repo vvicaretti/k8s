@@ -24,4 +24,5 @@ kubectl apply -f /vagrant/networking/kube-flannel.yml
 
 chmod 644 /etc/kubernetes/admin.conf
 
+# https://itnext.io/understanding-kubectl-taint-e6f299d3851f
 kubectl taint nodes --all node-role.kubernetes.io/master-
