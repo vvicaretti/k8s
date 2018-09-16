@@ -7,3 +7,6 @@
 [submodule "parse-server"]
 	path = parse-server
 	url = https://github.com/ParsePlatform/parse-server
+[submodule "CKAD-exercises"]
+	path = CKAD-exercises
+	url = https://github.com/dgkanatsios/CKAD-exercises.git
