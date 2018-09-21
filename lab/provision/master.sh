@@ -9,13 +9,13 @@ fi
 POD_NETWORK_CIDR=$1
 NODE_IP=$2
 OUTPUT_FILE="/vagrant/provision/join.sh"
-SYSTEMD_CONFIG="/etc/systemd/system/kubelet.service.d/10-kubeadm.conf"
+KUBELET_CONFIG="/etc/default/kubelet"
 
 kubeadm init --apiserver-advertise-address="${NODE_IP}" --pod-network-cidr "${POD_NETWORK_CIDR}" | grep "kubeadm join" > "${OUTPUT_FILE}"
 
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
-echo "Environment=\"KUBELET_EXTRA_ARGS=--node-ip=${NODE_IP}\"" >> ${SYSTEMD_CONFIG}
+echo "KUBELET_EXTRA_ARGS=\"--node-ip=${NODE_IP}\"" >> ${KUBELET_CONFIG}
 
 systemctl daemon-reload
 systemctl restart kubelet
@@ -28,6 +28,4 @@ chmod 644 /etc/kubernetes/admin.conf
 kubectl taint nodes --all node-role.kubernetes.io/master-
 
 # get k8s config
-cp /etc/kubernetes/admin.conf "$HOME"/
-chown "$(id -u)":"$(id -g)" "$HOME"/admin.conf
-echo "KUBECONFIG=${HOME}/admin.conf" >> "$HOME"/.bashrc
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> "$HOME"/.bashrc
