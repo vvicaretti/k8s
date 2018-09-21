@@ -1,6 +1,8 @@
 export DEBIAN_FRONTEND=noninteractive
 
-cfssl_version="R1.2"
+CFSSL_VERSION="R1.2"
+KUBERNETES_VERSION="1.11.1-00"
+DOCKER_VERSION="17.03.2~ce-0~ubuntu-xenial"
 
 # setup additional repositories:
 ## sysdig
@@ -22,16 +24,16 @@ apt-get install -y \
   apt-transport-https \
   htop \
   linux-headers-"$(uname -r)" \
-  kubelet \
-  kubeadm \
-  kubectl \
+  kubelet=${KUBERNETES_VERSION} \
+  kubeadm=${KUBERNETES_VERSION} \
+  kubectl=${KUBERNETES_VERSION} \
   sysdig \
   ca-certificates \
   curl \
   software-properties-common \
   jq \
   nfs-kernel-server \
-  docker-ce=17.03.2~ce-0~ubuntu-xenial
+  docker-ce=${DOCKER_VERSION}
 
 # setup nfs
 mkdir -p /opt/data && chmod 1777 /opt/data/ && echo software > /opt/data/hello.txt
@@ -39,8 +41,8 @@ echo "/opt/data/ *(rw,sync,no_root_squash,subtree_check)" >> /etc/exports
 exportfs -ra
 
 curl -sSL \
-  -O "https://pkg.cfssl.org/${cfssl_version}/cfssl_linux-amd64" \
-  -O "https://pkg.cfssl.org/${cfssl_version}/cfssljson_linux-amd64"
+  -O "https://pkg.cfssl.org/${CFSSL_VERSION}/cfssl_linux-amd64" \
+  -O "https://pkg.cfssl.org/${CFSSL_VERSION}/cfssljson_linux-amd64"
 
 chmod +x cfssl_linux-amd64 cfssljson_linux-amd64
 
