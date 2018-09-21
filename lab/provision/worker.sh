@@ -13,9 +13,9 @@ chmod +x /vagrant/provision/join.sh
 bash /vagrant/provision/join.sh
 
 NODE_IP=$1
-SYSTEMD_CONFIG="/etc/systemd/system/kubelet.service.d/10-kubeadm.conf"
+KUBELET_CONFIG="/etc/default/kubelet"
 
-echo "Environment=\"KUBELET_EXTRA_ARGS=--node-ip=${NODE_IP}\"" >> ${SYSTEMD_CONFIG}
+echo "KUBELET_EXTRA_ARGS=\"--node-ip=${NODE_IP}\"" > ${KUBELET_CONFIG}
 
 systemctl daemon-reload
 systemctl restart kubelet
