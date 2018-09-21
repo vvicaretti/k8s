@@ -26,3 +26,8 @@ chmod 644 /etc/kubernetes/admin.conf
 
 # https://itnext.io/understanding-kubectl-taint-e6f299d3851f
 kubectl taint nodes --all node-role.kubernetes.io/master-
+
+# get k8s config
+cp /etc/kubernetes/admin.conf "$HOME"/
+chown "$(id -u)":"$(id -g)" "$HOME"/admin.conf
+echo "KUBECONFIG=${HOME}/admin.conf" >> "$HOME"/.bashrc
