@@ -28,4 +28,4 @@ chmod 644 /etc/kubernetes/admin.conf
 kubectl taint nodes --all node-role.kubernetes.io/master-
 
 # get k8s config
-echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> "$HOME"/.bashrc
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /home/vagrant/.bashrc
