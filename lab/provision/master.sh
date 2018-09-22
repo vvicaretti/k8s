@@ -27,5 +27,7 @@ chmod 644 /etc/kubernetes/admin.conf
 # https://itnext.io/understanding-kubectl-taint-e6f299d3851f
 kubectl taint nodes --all node-role.kubernetes.io/master-
 
+kubectl apply -f /vagrant/cluster/heapster-deployment.yaml
+
 # get k8s config
 echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /home/vagrant/.bashrc
