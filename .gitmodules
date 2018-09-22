@@ -10,3 +10,6 @@
 [submodule "CKAD-exercises"]
 	path = CKAD-exercises
 	url = https://github.com/dgkanatsios/CKAD-exercises.git
+[submodule "k8s-admin-helper"]
+	path = k8s-admin-helper
+	url = https://github.com/nkuba/k8s-admin-helper.git
