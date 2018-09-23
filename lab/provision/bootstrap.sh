@@ -29,6 +29,7 @@ apt-get install -y \
   kubectl=${KUBERNETES_VERSION} \
   sysdig \
   ca-certificates \
+  golang-go \
   curl \
   software-properties-common \
   jq \
