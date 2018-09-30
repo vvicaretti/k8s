@@ -38,7 +38,7 @@ apt-get install -y \
   nfs-kernel-server \
   docker-ce=${DOCKER_VERSION}
 
-apt-mark hold kubelet kubeadm kubectl
+apt-mark hold kubelet kubeadm kubectl docker-ce
 
 # setup nfs
 mkdir -p /opt/data && chmod 1777 /opt/data/ && echo software > /opt/data/hello.txt
