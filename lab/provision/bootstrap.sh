@@ -11,6 +11,8 @@ curl -s -o /etc/apt/sources.list.d/draios.list https://s3.amazonaws.com/download
 ## kubernetes
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >/etc/apt/sources.list.d/kubernetes.list
+## golang
+add-apt-repository ppa:gophers/archive
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
@@ -29,12 +31,14 @@ apt-get install -y \
   kubectl=${KUBERNETES_VERSION} \
   sysdig \
   ca-certificates \
-  golang-go \
+  golang-1.10-go \
   curl \
   software-properties-common \
   jq \
   nfs-kernel-server \
   docker-ce=${DOCKER_VERSION}
+
+apt-mark hold kubelet kubeadm kubectl
 
 # setup nfs
 mkdir -p /opt/data && chmod 1777 /opt/data/ && echo software > /opt/data/hello.txt
