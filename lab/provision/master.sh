@@ -27,8 +27,5 @@ chmod 644 /etc/kubernetes/admin.conf
 
 kubectl apply -f /vagrant/cluster/heapster-deployment.yaml
 
-# get k8s config
-echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /home/vagrant/.bashrc
-
 # Copy kubeconfig
 cp -rf /etc/kubernetes/admin.conf /vagrant/admin.conf

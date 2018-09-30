@@ -59,8 +59,10 @@ mv -v cfssljson_linux-amd64 /usr/local/bin/cfssljson
     echo "source <(kubectl completion bash)"
     echo 'alias kget="kubectl get replicaset,pod,deployment,daemonset -o wide --show-labels"'
     echo 'alias k="kubectl"'
+    echo 'export KUBECONFIG=/etc/kubernetes/admin.conf'
+    echo "export PATH=/usr/lib/go-1.10/bin:$PATH"
 
-} >> ~/.bashrc
+} >> /home/vagrant/.bashrc
 
 # stern
 wget -q -O /usr/bin/stern \
