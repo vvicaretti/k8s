@@ -25,6 +25,7 @@ apt-get update && apt-get upgrade -y
 apt-get install -y \
   apt-transport-https \
   htop \
+  ngrep \
   linux-headers-"$(uname -r)" \
   kubelet=${KUBERNETES_VERSION} \
   kubeadm=${KUBERNETES_VERSION} \
