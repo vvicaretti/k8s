@@ -25,7 +25,5 @@ kubectl apply -f /vagrant/networking/kube-flannel.yml
 
 chmod 644 /etc/kubernetes/admin.conf
 
-kubectl apply -f /vagrant/cluster/heapster-deployment.yaml
-
 # Copy kubeconfig
 cp -rf /etc/kubernetes/admin.conf /vagrant/admin.conf
