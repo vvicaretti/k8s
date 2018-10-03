@@ -26,6 +26,7 @@ apt-get install -y \
   apt-transport-https \
   htop \
   ngrep \
+  lynx \
   linux-headers-"$(uname -r)" \
   kubelet=${KUBERNETES_VERSION} \
   kubeadm=${KUBERNETES_VERSION} \
