@@ -1,7 +1,7 @@
 export DEBIAN_FRONTEND=noninteractive
 
 CFSSL_VERSION="R1.2"
-KUBERNETES_VERSION="1.11.1-00"
+KUBERNETES_VERSION="1.11.2-00"
 DOCKER_VERSION="17.03.2~ce-0~ubuntu-xenial"
 
 # setup additional repositories:
@@ -23,10 +23,14 @@ add-apt-repository \
 
 apt-get update && apt-get upgrade -y
 apt-get install -y \
+  --allow-change-held-packages \
   apt-transport-https \
   htop \
   ngrep \
   lynx \
+  socat \
+  conntrack \
+  ipset \
   linux-headers-"$(uname -r)" \
   kubelet=${KUBERNETES_VERSION} \
   kubeadm=${KUBERNETES_VERSION} \
