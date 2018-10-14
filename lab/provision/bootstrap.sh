@@ -47,7 +47,7 @@ apt-get install -y \
 apt-mark hold kubelet kubeadm kubectl docker-ce
 
 # setup nfs
-mkdir -p /opt/data && chmod 1777 /opt/data/ && echo software > /opt/data/hello.txt
+mkdir -p /opt/data && chmod 1777 /opt/data/ && echo world > /opt/data/hello.txt
 echo "/opt/data/ *(rw,sync,no_root_squash,subtree_check)" >> /etc/exports
 exportfs -ra
 
