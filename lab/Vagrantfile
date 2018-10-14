@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-WORKERS = 2
+K8S_WORKERS = ENV["WORKERS"] || 2
 BASE_NETWORK = '192.168.100.1'
 POD_NETWORK = '10.244.0.0/16'
 
@@ -22,7 +22,7 @@ Vagrant.configure('2') do |config|
     master.vm.provision 'shell', path: "provision/master.sh", args: "#{POD_NETWORK} #{BASE_NETWORK}0"
   end
 
-  (1..WORKERS).each do |n|
+  (1..K8S_WORKERS.to_i).each do |n|
     config.vm.define "k8s-worker#{n}" do |worker|
       worker.vm.network 'private_network', ip: "#{BASE_NETWORK}#{n}"
       worker.vm.hostname = "k8s-worker#{n}"
