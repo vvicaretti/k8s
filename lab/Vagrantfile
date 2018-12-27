@@ -1,9 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+# frozen_string_literal: true
 
-K8S_WORKERS = ENV["WORKERS"] || 2
-VMS_MEMORY = ENV["MEMORY"] || 2048
-KUBEADM = ENV["KUBEADM"] || true
+K8S_WORKERS = ENV['WORKERS'] || 2
+VMS_MEMORY = ENV['MEMORY'] || 2048
+KUBEADM = ENV['KUBEADM'] || true
 BASE_NETWORK = '192.168.100.1'
 POD_NETWORK = '10.244.0.0/16'
 
@@ -21,7 +22,7 @@ Vagrant.configure('2') do |config|
     master.vm.network 'private_network', ip: "#{BASE_NETWORK}0"
     master.vm.network 'forwarded_port', guest: 8001, host: 8001
     master.vm.hostname = 'k8s-master'
-    master.vm.provision 'shell', path: "provision/master.sh", args: "#{POD_NETWORK} #{BASE_NETWORK}0", env: {"KUBEADM" => KUBEADM}
+    master.vm.provision 'shell', path: 'provision/master.sh', args: "#{POD_NETWORK} #{BASE_NETWORK}0", env: {'KUBEADM' => KUBEADM}
   end
 
   (1..K8S_WORKERS.to_i).each do |n|
