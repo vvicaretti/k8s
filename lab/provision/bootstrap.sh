@@ -2,7 +2,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 CFSSL_VERSION="R1.2"
 KUBERNETES_VERSION="1.13.1-00"
-DOCKER_VERSION="17.03.2~ce-0~ubuntu-xenial"
+DOCKER_VERSION="5:18.09.0~3-0~ubuntu-xenial"
 
 # setup additional repositories:
 ## sysdig
