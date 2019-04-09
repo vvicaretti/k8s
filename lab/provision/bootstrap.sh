@@ -1,7 +1,7 @@
 export DEBIAN_FRONTEND=noninteractive
 
 CFSSL_VERSION="R1.2"
-KUBERNETES_VERSION="1.13.1-00"
+KUBERNETES_VERSION="1.14.1-00"
 DOCKER_VERSION="5:18.09.0~3-0~ubuntu-xenial"
 
 # setup additional repositories:
@@ -37,7 +37,7 @@ apt-get install -y \
   kubectl=${KUBERNETES_VERSION} \
   sysdig \
   ca-certificates \
-  golang-1.10-go \
+  golang-1.11-go \
   curl \
   software-properties-common \
   jq \
