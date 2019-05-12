@@ -9,6 +9,8 @@ fi
 apt-get update && apt-get install nfs-common
 
 if $KUBEADM; then
+  echo "plugins.cri.systemd_cgroup = true" >> /etc/containerd/config.toml
+
   chmod +x /vagrant/provision/join.sh
   bash /vagrant/provision/join.sh
 

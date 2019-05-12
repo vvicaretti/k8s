@@ -12,7 +12,9 @@ OUTPUT_FILE="/vagrant/provision/join.sh"
 KUBELET_CONFIG="/etc/default/kubelet"
 
 if $KUBEADM; then
-  kubeadm init --apiserver-advertise-address="${NODE_IP}" --pod-network-cidr "${POD_NETWORK_CIDR}" | grep "kubeadm join" > "${OUTPUT_FILE}"
+  echo "plugins.cri.systemd_cgroup = true" >> /etc/containerd/config.toml
+
+  kubeadm init --apiserver-advertise-address="${NODE_IP}" --pod-network-cidr "${POD_NETWORK_CIDR}"
 
   export KUBECONFIG=/etc/kubernetes/admin.conf
 
@@ -28,4 +30,8 @@ if $KUBEADM; then
 
   # Copy kubeconfig
   cp -rf /etc/kubernetes/admin.conf /vagrant/admin.conf
+
+  # Save the join command
+  join_command=$(kubeadm token create --print-join-command)
+  echo "$join_command" > "${OUTPUT_FILE}"
 fi
